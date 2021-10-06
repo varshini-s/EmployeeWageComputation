@@ -19,14 +19,22 @@ function getWorkingHours(employeeCheck)
     }
 }
 
+function calculateDailyWages(employeeHours)
+{
+    return employeeHours*WAGE_PER_HOUR;
+}
+
 let totalEmployeeHours=0;
 let totalWorkingDays=0;
+let employeeWageArray = new Array();
 while(totalEmployeeHours<=MAX_HOURS_IN_MONTH && totalWorkingDays<NUMBER_OF_WORKING_DAYS)
 {
     totalWorkingDays++;
     let employeeCheck=Math.floor(Math.random()*10)%3;
-    totalEmployeeHours+=getWorkingHours(employeeCheck);
+    let employeeHours=getWorkingHours(employeeCheck);
+    totalEmployeeHours+=employeeHours;
+    employeeWageArray.push(calculateDailyWages(employeeHours));
 }
 
-let employeeWage=totalEmployeeHours*WAGE_PER_HOUR;
-console.log("Employee hours "+totalEmployeeHours+" Employee wage: "+employeeWage);
+let employeeWage=calculateDailyWages(totalEmployeeHours)
+console.log("total days: "+totalWorkingDays+" Employee hours: "+totalEmployeeHours+" Employee wage: "+employeeWage);
