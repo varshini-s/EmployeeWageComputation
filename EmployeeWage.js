@@ -38,3 +38,12 @@ while(totalEmployeeHours<=MAX_HOURS_IN_MONTH && totalWorkingDays<NUMBER_OF_WORKI
 
 let employeeWage=calculateDailyWages(totalEmployeeHours)
 console.log("total days: "+totalWorkingDays+" Employee hours: "+totalEmployeeHours+" Employee wage: "+employeeWage);
+
+let totalEmployeeWage=0;
+function totalWagesUsingForEach(dailyWage)
+{
+    totalEmployeeWage+=dailyWage
+}
+employeeWageArray.forEach(totalWagesUsingForEach);
+console.log("total days: "+totalWorkingDays+" Employee hours: "+totalEmployeeHours+" Employee wage: "+totalEmployeeWage);
+
