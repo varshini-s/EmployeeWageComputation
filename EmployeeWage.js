@@ -73,7 +73,11 @@ let partWorkingDayString=employeeDailyHoursAndWageArray
                          .map(dailyHoursAndWage=>dailyHoursAndWage.toString());
 console.log("\nPartWorkingDay Strings: "+partWorkingDayString)                    
 
-
+let nonWOrkingDaysNums=employeeDailyHoursAndWageArray
+                      .filter(dailyHoursAndWage=>dailyHoursAndWage.dailyHours==0)
+                      .map(dailyHoursAndWage=>dailyHoursAndWage.dayNumber)
+                    
+console.log("NonWorkingDayNums : "+nonWOrkingDaysNums)
 {
 
     let totalEmployeeWage=0;
