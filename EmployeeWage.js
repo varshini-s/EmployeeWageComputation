@@ -53,6 +53,16 @@ while(totalEmployeeHours<=MAX_HOURS_IN_MONTH && totalWorkingDays<NUMBER_OF_WORKI
 
 console.log("Showing daily hours worked and wages earned :"+employeeDailyHoursAndWageArray)
 
+let totalWages=employeeDailyHoursAndWageArray
+               .filter(dailyHoursAndWage=>dailyHoursAndWage.dailyWage>0)
+               .reduce((totalWage,dailyHoursAndWage)=>totalWage+=dailyHoursAndWage.dailyWage,0);
+
+let totalHours= employeeDailyHoursAndWageArray
+                .filter(dailyHoursAndWage=>dailyHoursAndWage.dailyWage>0)
+                .reduce((totalHours,dailyHoursAndWage)=>totalHours+=dailyHoursAndWage.dailyHours,0);
+
+console.log("total hours:"+totalHours+" total wages: "+totalWages);
+
 {
 
     let totalEmployeeWage=0;
