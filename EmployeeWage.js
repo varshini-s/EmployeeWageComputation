@@ -68,6 +68,11 @@ process.stdout.write("Logging full work days")
 employeeDailyHoursAndWageArray.filter(dailyHoursAndWage=>dailyHoursAndWage.dailyHours==8)
                               .forEach(dailyHoursAndWage=>process.stdout.write(dailyHoursAndWage.toString()))
 
+let partWorkingDayString=employeeDailyHoursAndWageArray
+                         .filter(dailyHoursAndWage=>dailyHoursAndWage.dailyHours==4)
+                         .map(dailyHoursAndWage=>dailyHoursAndWage.toString());
+console.log("\nPartWorkingDay Strings: "+partWorkingDayString)                    
+
 
 {
 
