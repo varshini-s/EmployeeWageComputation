@@ -26,9 +26,8 @@ function calculateDailyWages(employeeHours)
 
 let totalEmployeeHours=0;
 let totalWorkingDays=0;
-let employeeWageArray = new Array();
-let employeeDailyWageMap = new Map();
-let employeeDailyHoursMap = new Map();
+let employeeDailyHoursAndWageArray = new Array();
+
 
 while(totalEmployeeHours<=MAX_HOURS_IN_MONTH && totalWorkingDays<NUMBER_OF_WORKING_DAYS)
 {
@@ -36,42 +35,23 @@ while(totalEmployeeHours<=MAX_HOURS_IN_MONTH && totalWorkingDays<NUMBER_OF_WORKI
     let employeeCheck=Math.floor(Math.random()*10)%3;
     let employeeHours=getWorkingHours(employeeCheck);
     totalEmployeeHours+=employeeHours;
-    employeeWageArray.push(calculateDailyWages(employeeHours));
-    employeeDailyWageMap.set(totalWorkingDays,calculateDailyWages(employeeHours));
-    employeeDailyHoursMap.set(totalWorkingDays,employeeHours);
+    employeeDailyHoursAndWageArray.push(
+    {
+        dayNumber:totalWorkingDays,
+        dailyHours:employeeHours,
+        dailyWage:calculateDailyWages(employeeHours),
+        toString()
+        {
+            return '\nDay'+this.dayNumber+'=>working hours is '+this.dailyHours+
+            ' Wage earned = '+this.dailyWage
+        }
+    });
+
 
 }
 
-console.log(employeeDailyWageMap)
-function totalWages(totalWage,dailyWage)
-{
-    return totalWage+dailyWage
-}
-console.log("Employee wage map totalHours: "+Array.from(employeeDailyWageMap.values()).reduce(totalWages,0))
 
-let employeeWage=calculateDailyWages(totalEmployeeHours)
-console.log("total days: "+totalWorkingDays+" Employee hours: "+totalEmployeeHours+" Employee wage: "+employeeWage);
-
-const findTotal=(totalValue,dailyValue)=>{return totalValue+dailyValue};
-
-let count=0;
-let totalHours=Array.from(employeeDailyHoursMap.values()).reduce(findTotal,0)
-let totalSalary=employeeWageArray.filter(dailyWage=>dailyWage>0)
-                                 .reduce(findTotal,0);
-console.log("Employee wage with Arrow: "+"Total hours: "+totalHours+" Total wages: "+totalSalary)
-
-let nonWorkingDays= new Array();
-let partWorkingDays = new Array();
-let fullWorkingDays = new Array();
-employeeDailyHoursMap.forEach((value,key,map)=>{
-                         if(value==8) fullWorkingDays.push(key);
-                         else if(value==4) partWorkingDays.push(key);
-                         else nonWorkingDays.push(key)
-                     });
-
-console.log("Full working days: "+fullWorkingDays);
-console.log("Part working days: "+partWorkingDays);
-console.log("Non working days: "+nonWorkingDays)
+console.log("Showing daily hours worked and wages earned :"+employeeDailyHoursAndWageArray)
 
 {
 
@@ -144,4 +124,34 @@ console.log("Non working days: "+nonWorkingDays)
         return numberOfDays;
     }
     console.log("Number of days employee worked: "+employeeWageArray.reduce(totalDaysWorked,0));
+    function totalWages(totalWage,dailyWage)
+    {
+        return totalWage+dailyWage
+    }
+
+    console.log("Employee wage map totalHours: "+Array.from(employeeDailyWageMap.values()).reduce(totalWages,0))
+
+    let employeeWage=calculateDailyWages(totalEmployeeHours)
+    console.log("total days: "+totalWorkingDays+" Employee hours: "+totalEmployeeHours+" Employee wage: "+employeeWage);
+
+    const findTotal=(totalValue,dailyValue)=>{return totalValue+dailyValue};
+
+    let count=0;
+    let totalHours=Array.from(employeeDailyHoursMap.values()).reduce(findTotal,0)
+    let totalSalary=employeeWageArray.filter(dailyWage=>dailyWage>0)
+                                    .reduce(findTotal,0);
+    console.log("Employee wage with Arrow: "+"Total hours: "+totalHours+" Total wages: "+totalSalary)
+
+    let nonWorkingDays= new Array();
+    let partWorkingDays = new Array();
+    let fullWorkingDays = new Array();
+    employeeDailyHoursMap.forEach((value,key,map)=>{
+                            if(value==8) fullWorkingDays.push(key);
+                            else if(value==4) partWorkingDays.push(key);
+                            else nonWorkingDays.push(key)
+                        });
+
+    console.log("Full working days: "+fullWorkingDays);
+    console.log("Part working days: "+partWorkingDays);
+    console.log("Non working days: "+nonWorkingDays)
 }
