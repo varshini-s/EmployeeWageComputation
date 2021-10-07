@@ -73,21 +73,24 @@ let partWorkingDayString=employeeDailyHoursAndWageArray
                          .map(dailyHoursAndWage=>dailyHoursAndWage.toString());
 console.log("\nPartWorkingDay Strings: "+partWorkingDayString)                    
 
-let nonWOrkingDaysNums=employeeDailyHoursAndWageArray
+let nonWorkingDaysNumbers=employeeDailyHoursAndWageArray
                       .filter(dailyHoursAndWage=>dailyHoursAndWage.dailyHours==0)
                       .map(dailyHoursAndWage=>dailyHoursAndWage.dayNumber)
                     
-console.log("NonWorkingDayNums : "+nonWOrkingDaysNums)
+console.log("NonWorkingDayNums : "+nonWorkingDaysNumbers)
+
+let totalEmployeeWage=0;
+//Calculating daily wage using for each
+function totalWagesUsingForEach(employee)
+{
+    totalEmployeeWage+=employee.dailyWage
+}
+employeeDailyHoursAndWageArray.forEach(totalWagesUsingForEach);
+console.log("total days: "+totalWorkingDays+" Employee hours: "+totalEmployeeHours+" Employee wage: "+totalEmployeeWage);
+
 {
 
-    let totalEmployeeWage=0;
-    //Calculating daily wage using for each
-    function totalWagesUsingForEach(dailyWage)
-    {
-        totalEmployeeWage+=dailyWage
-    }
-    employeeWageArray.forEach(totalWagesUsingForEach);
-    console.log("total days: "+totalWorkingDays+" Employee hours: "+totalEmployeeHours+" Employee wage: "+totalEmployeeWage);
+   
 
     //Calculating daily wages using reduce
     function totalWagesUsingReduce(totalWage,dailyWage)
