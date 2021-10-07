@@ -63,6 +63,12 @@ let totalHours= employeeDailyHoursAndWageArray
 
 console.log("total hours:"+totalHours+" total wages: "+totalWages);
 
+process.stdout.write("Logging full work days")
+
+employeeDailyHoursAndWageArray.filter(dailyHoursAndWage=>dailyHoursAndWage.dailyHours==8)
+                              .forEach(dailyHoursAndWage=>process.stdout.write(dailyHoursAndWage.toString()))
+
+
 {
 
     let totalEmployeeWage=0;
